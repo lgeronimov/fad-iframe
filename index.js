@@ -2,31 +2,33 @@ window.onload = function () {
   initIframe();
 };
 
-  // subscribe to message event to recive the events from the iframe
-  window.addEventListener("message", (message) => {
-    // IMPORTANT: check the origin of the data!
-    if (message.origin.includes("firmaautografa.com")) {
-      if (message.data.event === "PROCESS_INIT") {
-        // only informative
-        console.log("Process init");
-      } else if (message.data.event === "PROCESS_ERROR") {
-        // restart component and send error
-        console.log("Unespected error:" + JSON.stringify(message.data.data));
-      } else if (message.data.event === "PROCESS_COMPLETED") {
-        // end of the process
-        console.log("Process completed");
-      } else if (message.data.event === "ENTRY_PATH") {
-        // show current path
-        console.log("Current path: " + message.data.data);
-      }
-    } else return;
-  });
+// events available
+const EVENT_MODULE = {
+  PROCESS_INIT: "INIT_MODULE",
+  PROCESS_ERROR: "PROCESS_ERROR",
+  PROCESS_COMPLETED: "PROCESS_COMPLETED",
+  ENTRY_PATH: "ENTRY_PATH"
+}
 
-
-
-window.onload = function () {
-  initIframe();
-};
+// subscribe to message event to recive the events from the iframe
+window.addEventListener("message", (message) => {
+  // IMPORTANT: check the origin of the data!
+  if (message.origin.includes("firmaautografa.com")) {
+    if (message.data.event === EVENT_MODULE.PROCESS_INIT) {
+      // only informative
+      console.log("Process init");
+    } else if (message.data.event === EVENT_MODULE.PROCESS_ERROR) {
+      // restart component and send error
+      console.log("Unespected error:" + JSON.stringify(message.data.data));
+    } else if (message.data.event === EVENT_MODULE.PROCESS_COMPLETED) {
+      // end of the process
+      console.log("Process completed");
+    } else if (message.data.event === EVENT_MODULE.ENTRY_PATH) {
+      // show current path
+      console.log("Current path: " + message.data.data);
+    }
+  } else return;
+});
 
 function initIframe() {
   // get iframe 
