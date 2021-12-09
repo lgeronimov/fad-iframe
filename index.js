@@ -4,7 +4,7 @@ window.onload = function () {
 
 // events available
 const EVENT_MODULE = {
-  PROCESS_INIT: "INIT_MODULE",
+  PROCESS_INIT: "PROCESS_INIT",
   PROCESS_ERROR: "PROCESS_ERROR",
   PROCESS_COMPLETED: "PROCESS_COMPLETED",
   ENTRY_PATH: "ENTRY_PATH"
